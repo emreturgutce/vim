@@ -24,10 +24,19 @@ Plugin 'luochen1990/rainbow'
 Plugin 'APZelos/blamer.nvim'
 Plugin 'preservim/nerdcommenter'
 Plugin 'fatih/vim-go'
+Plugin 'morhetz/gruvbox'
 
 call vundle#end()
 
 let g:go_def_mapping_enabled = 0
+let g:go_fmt_autosave = 1
+let g:go_fmt_command = 'gopls'
+let g:go_fmt_options = {
+    \ 'gofmt': '-s',
+    \ 'goimports': '-local mycompany.com',
+    \ }
+let g:go_imports_autosave = 1
+let g:go_imports_mode = 'gopls'
 
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
 
@@ -39,9 +48,9 @@ let g:blamer_enabled = 1
 
 let g:rainbow_active = 1
 syntax on
-colorscheme onedark
+colorscheme gruvbox
 set ts=4
-set relativenumber
+set number relativenumber
 set laststatus=2
 if !has('gui_running')
   set t_Co=256
@@ -295,3 +304,7 @@ let g:fzf_tags_command = 'ctags -R'
 " [Commands] --expect expression for directly executing the command
 let g:fzf_commands_expect = 'alt-enter,ctrl-x'
 nnoremap <C-t> :CocCommand explorer<CR>
+
+noremap <silent> <C-S>          :update<CR>
+vnoremap <silent> <C-S>         <C-C>:update<CR>
+inoremap <silent> <C-S>         <C-O>:update<CR>
