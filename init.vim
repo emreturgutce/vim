@@ -48,7 +48,7 @@ let g:blamer_enabled = 1
 
 let g:rainbow_active = 1
 syntax on
-colorscheme gruvbox
+colorscheme onedark
 set ts=4
 set number relativenumber
 set laststatus=2
