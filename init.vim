@@ -25,6 +25,8 @@ Plugin 'APZelos/blamer.nvim'
 Plugin 'preservim/nerdcommenter'
 Plugin 'fatih/vim-go'
 Plugin 'morhetz/gruvbox'
+Plugin 'itchyny/vim-gitbranch'
+Plugin 'tpope/vim-fugitive'
 
 call vundle#end()
 
@@ -308,3 +310,13 @@ nnoremap <C-t> :CocCommand explorer<CR>
 noremap <silent> <C-S>          :update<CR>
 vnoremap <silent> <C-S>         <C-C>:update<CR>
 inoremap <silent> <C-S>         <C-O>:update<CR>
+
+let g:lightline = {
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component_function': {
+      \   'gitbranch': 'gitbranch#name'
+      \ },
+      \ }
