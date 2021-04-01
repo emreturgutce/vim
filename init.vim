@@ -30,6 +30,9 @@ Plugin 'tpope/vim-fugitive'
 
 call vundle#end()
 
+nnoremap <F7> :tabp <CR>
+nnoremap <F8> :tabn <CR>
+
 let g:go_def_mapping_enabled = 0
 let g:go_fmt_autosave = 1
 let g:go_fmt_command = 'gopls'
@@ -50,7 +53,7 @@ let g:blamer_enabled = 1
 
 let g:rainbow_active = 1
 syntax on
-colorscheme onedark
+colorscheme gruvbox
 set ts=4
 set number relativenumber
 set laststatus=2
