@@ -6,7 +6,7 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 Plugin 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
-let g:coc_global_extensions = ['coc-tslint-plugin', 'coc-tsserver', 'coc-emmet', 'coc-css', 'coc-html', 'coc-json', 'coc-yank', 'coc-prettier', 'coc-angular', 'coc-explorer', 'coc-pairs', 'coc-go']
+let g:coc_global_extensions = ['coc-tslint-plugin', 'coc-tsserver', 'coc-emmet', 'coc-css', 'coc-html', 'coc-json', 'coc-yank', 'coc-prettier', 'coc-angular', 'coc-explorer', 'coc-pairs', 'coc-go', 'coc-lists']
 
 Plugin 'ianks/vim-tsx'
 Plugin 'leafgarland/typescript-vim'
@@ -52,8 +52,20 @@ source $HOME/.config/nvim/themes/onedark.vim
 let g:blamer_enabled = 1
 
 let g:rainbow_active = 1
+
+let g:rainbow_conf= {
+  \	  'guifgs': ['yellow', 'magenta', 'lightblue'],
+  \	  'ctermfgs': ['yellow', 'magenta', 'lightblue'],
+  \	  'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
+  \   'separately': {
+  \     'css': 0,
+  \     'scss': 0,
+  \     'html': 0
+  \   }
+  \ }
+
 syntax on
-colorscheme gruvbox
+colorscheme onedark
 set ts=4
 set number relativenumber
 set laststatus=2
@@ -323,3 +335,15 @@ let g:lightline = {
       \   'gitbranch': 'gitbranch#name'
       \ },
       \ }
+
+" grep word under cursor
+command! -nargs=+ -complete=custom,s:GrepArgs Rg exe 'CocList grep '.<q-args>
+
+function! s:GrepArgs(...)
+  let list = ['-S', '-smartcase', '-i', '-ignorecase', '-w', '-word',
+        \ '-e', '-regex', '-u', '-skip-vcs-ignores', '-t', '-extension']
+  return join(list, "\n")
+endfunction
+
+" Keymapping for grep word under cursor with interactive mode
+nnoremap <silent> <Leader>cf :exe 'CocList -I --input='.expand('<cword>').' grep'<CR>
