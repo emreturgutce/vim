@@ -50,6 +50,8 @@ let g:go_imports_mode = 'gopls'
 
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
 
+nnoremap <S-M-f> :Prettier <CR>
+
 let mapleader = ","
 
 source $HOME/.config/nvim/themes/onedark.vim
@@ -313,8 +315,8 @@ let g:lightline = {
       \ },
       \ }
 
-nmap     <C-F>f <Plug>CtrlSFPrompt
-vmap     <C-F>f <Plug>CtrlSFVwordPath
+nmap     <C-F> <Plug>CtrlSFPrompt
+vmap     <C-F> <Plug>CtrlSFVwordPath
 vmap     <C-F>F <Plug>CtrlSFVwordExec
 nmap     <C-F>n <Plug>CtrlSFCwordPath
 nmap     <C-F>p <Plug>CtrlSFPwordPath
