@@ -6,7 +6,7 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 Plugin 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
-let g:coc_global_extensions = ['coc-tslint-plugin', 'coc-tsserver', 'coc-emmet', 'coc-css', 'coc-html', 'coc-json', 'coc-yank', 'coc-prettier', 'coc-angular', 'coc-explorer', 'coc-pairs', 'coc-go']
+let g:coc_global_extensions = ['coc-tslint-plugin', 'coc-tsserver', 'coc-emmet', 'coc-css', 'coc-html', 'coc-json', 'coc-yank', 'coc-prettier', 'coc-angular', 'coc-explorer', 'coc-pairs', 'coc-go', 'coc-docker', 'coc-yaml']
 
 Plugin 'ianks/vim-tsx'
 Plugin 'leafgarland/typescript-vim'
@@ -32,8 +32,33 @@ Plugin 'nvim-lua/popup.nvim'
 Plugin 'nvim-lua/plenary.nvim'
 Plugin 'nvim-telescope/telescope.nvim'
 Plugin 'nvim-telescope/telescope-fzy-native.nvim'
+Plugin 'puremourning/vimspector'
+Plugin 'szw/vim-maximizer'
 
 call vundle#end()
+
+" Debugger remaps
+nnoremap <leader>m :MaximizerToggle!<CR>
+nnoremap <leader>dd :call vimspector#Launch()<CR>
+nnoremap <leader>dc :call GotoWindow(g:vimspector_session_windows.code)<CR>
+nnoremap <leader>dt :call GotoWindow(g:vimspector_session_windows.tagpage)<CR>
+nnoremap <leader>dv :call GotoWindow(g:vimspector_session_windows.variables)<CR>
+nnoremap <leader>dw :call GotoWindow(g:vimspector_session_windows.watches)<CR>
+nnoremap <leader>ds :call GotoWindow(g:vimspector_session_windows.stack_trace)<CR>
+nnoremap <leader>do :call GotoWindow(g:vimspector_session_windows.output)<CR>
+nnoremap <leader>de :call vimspector#Reset()<CR>
+
+nnoremap <leader>dtcb :call vimspector#CleanLineBreakpoint()<CR>
+
+nmap <leader>dl <Plug>VimspectorStepInto
+nmap <leader>dj <Plug>VimspectorStepOver
+nmap <leader>dk <Plug>VimspectorStepOut
+nmap <leader>d_ <Plug>VimspectorRestart
+nnoremap <leader>d<space> :call vimspector#Continue()<CR>
+
+nmap <leader>drc <Plug>VimspectorRunToCursor
+nmap <leader>dbp <Plug>VimspectorToggleBreakpoint
+nmap <leader>dcbp <Plug>VimspectorToggleConditionalBreakpoint
 
 inoremap jj <ESC>
 inoremap kk <ESC>
@@ -55,7 +80,6 @@ command! -nargs=0 Prettier :CocCommand prettier.formatFile
 
 nnoremap <S-M-f> :Prettier <CR>
 
-let mapleader = ","
 
 noremap <Up> <Nop>
 noremap <Down> <Nop>
@@ -82,7 +106,7 @@ let g:rainbow_conf= {
   \ }
 
 syntax on
-colorscheme onedark
+colorscheme gruvbox
 set ts=4
 set number relativenumber
 set laststatus=2
@@ -365,3 +389,9 @@ inoremap <C-F>t <Esc>:CtrlSFToggle<CR>
 
 let g:ctrlsf_auto_preview = 1
 let g:ctrlsf_default_root = 'project'
+
+set colorcolumn=+1,+2,+3
+highlight ColorColumn ctermbg=lightgrey guibg=lightgrey
+set colorcolumn=80
+
+let mapleader = ","

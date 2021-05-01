@@ -7,6 +7,12 @@
 			"filetypes": ["go"]
 		}
 	},
+	"diagnostic.virtualText": true,
+	"diagnostic.messageTarget": "echo",
+    "diagnostic.errorSign": "✖",
+    "diagnostic.warningSign": "⚠",
+    "diagnostic.infoSign": "•",
+    "diagnostic.hintSign": "•",
 	"html.autoClosingTags": true,
 	"prettier.trailingComma": "all",
 	"prettier.useTabs": true,
