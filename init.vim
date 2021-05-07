@@ -34,6 +34,8 @@ Plugin 'nvim-telescope/telescope.nvim'
 Plugin 'nvim-telescope/telescope-fzy-native.nvim'
 Plugin 'puremourning/vimspector'
 Plugin 'szw/vim-maximizer'
+Plugin 'NLKNguyen/papercolor-theme'
+Plugin 'mg979/vim-visual-multi', {'branch': 'master'}
 
 call vundle#end()
 
@@ -106,7 +108,7 @@ let g:rainbow_conf= {
   \ }
 
 syntax on
-colorscheme gruvbox
+colorscheme onedark
 set ts=4
 set number relativenumber
 set laststatus=2
