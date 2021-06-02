@@ -18,7 +18,7 @@
 	"prettier.useTabs": false,
 	"prettier.singleQuote": true,
 	"prettier.tabWidth": 2,
-	"explorer.width": 45,
+	"explorer.width": 40,
 	"explorer.position": "right",
 	"explorer.icon.enableNerdfont": true,
 	"typescript.updateImportsOnFileMove.enable": true,

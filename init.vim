@@ -32,41 +32,41 @@ Plugin 'nvim-lua/popup.nvim'
 Plugin 'nvim-lua/plenary.nvim'
 Plugin 'nvim-telescope/telescope.nvim'
 Plugin 'nvim-telescope/telescope-fzy-native.nvim'
-Plugin 'puremourning/vimspector'
 Plugin 'szw/vim-maximizer'
-Plugin 'NLKNguyen/papercolor-theme'
 Plugin 'mg979/vim-visual-multi', {'branch': 'master'}
+Plugin 'sainnhe/gruvbox-material'
 
 call vundle#end()
 
-" Debugger remaps
-nnoremap <leader>m :MaximizerToggle!<CR>
-nnoremap <leader>dd :call vimspector#Launch()<CR>
-nnoremap <leader>dc :call GotoWindow(g:vimspector_session_windows.code)<CR>
-nnoremap <leader>dt :call GotoWindow(g:vimspector_session_windows.tagpage)<CR>
-nnoremap <leader>dv :call GotoWindow(g:vimspector_session_windows.variables)<CR>
-nnoremap <leader>dw :call GotoWindow(g:vimspector_session_windows.watches)<CR>
-nnoremap <leader>ds :call GotoWindow(g:vimspector_session_windows.stack_trace)<CR>
-nnoremap <leader>do :call GotoWindow(g:vimspector_session_windows.output)<CR>
-nnoremap <leader>de :call vimspector#Reset()<CR>
+let mapleader = ","
 
-nnoremap <leader>dtcb :call vimspector#CleanLineBreakpoint()<CR>
+source $HOME/.config/nvim/themes/onedark.vim
 
-nmap <leader>dl <Plug>VimspectorStepInto
-nmap <leader>dj <Plug>VimspectorStepOver
-nmap <leader>dk <Plug>VimspectorStepOut
-nmap <leader>d_ <Plug>VimspectorRestart
-nnoremap <leader>d<space> :call vimspector#Continue()<CR>
+syntax on
+colorscheme gruvbox-material
+highlight ColorColumn ctermbg=lightgrey guibg=lightgrey
+set colorcolumn=+1,+2,+3
+set colorcolumn=80
 
-nmap <leader>drc <Plug>VimspectorRunToCursor
-nmap <leader>dbp <Plug>VimspectorToggleBreakpoint
-nmap <leader>dcbp <Plug>VimspectorToggleConditionalBreakpoint
+set ts=4
+set number relativenumber
+set laststatus=2
+if !has('gui_running')
+  set t_Co=256
+endif
 
+let g:gruvbox_material_background = 'soft'
+let g:gruvbox_material_enable_italic = 1
+let g:gruvbox_material_enable_bold = 1
+
+noremap <silent> <C-S> :update<CR>
+vnoremap <silent> <C-S> <C-C>:update<CR>
+inoremap <silent> <C-S> <C-O>:update<CR>
 inoremap jj <ESC>
 inoremap kk <ESC>
-
 nnoremap <F7> :tabp <CR>
 nnoremap <F8> :tabn <CR>
+nnoremap <S-M-f> :Prettier <CR>
 
 let g:go_def_mapping_enabled = 0
 let g:go_fmt_autosave = 1
@@ -80,15 +80,11 @@ let g:go_imports_mode = 'gopls'
 
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
 
-nnoremap <S-M-f> :Prettier <CR>
-
-
 noremap <Up> <Nop>
 noremap <Down> <Nop>
 noremap <Left> <Nop>
 noremap <Right> <Nop>
 
-source $HOME/.config/nvim/themes/onedark.vim
 
 set clipboard=unnamedplus
 
@@ -107,14 +103,6 @@ let g:rainbow_conf= {
   \   }
   \ }
 
-syntax on
-colorscheme onedark
-set ts=4
-set number relativenumber
-set laststatus=2
-if !has('gui_running')
-  set t_Co=256
-endif
 
 " Set internal encoding of vim, not needed on neovim, since coc.nvim using some
 " unicode characters in the file autoload/float.vim
@@ -245,11 +233,6 @@ if has('nvim-0.4.0') || has('patch-8.2.0750')
   vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
 endif
 
-" Use CTRL-S for selections ranges.
-" Requires 'textDocument/selectionRange' support of language server.
-nmap <silent> <C-s> <Plug>(coc-range-select)
-xmap <silent> <C-s> <Plug>(coc-range-select)
-
 " Add `:Format` command to format current buffer.
 command! -nargs=0 Format :call CocAction('format')
 
@@ -366,10 +349,6 @@ let g:fzf_tags_command = 'ctags -R'
 let g:fzf_commands_expect = 'alt-enter,ctrl-x'
 nnoremap <C-t> :CocCommand explorer<CR>
 
-noremap <silent> <C-S>          :update<CR>
-vnoremap <silent> <C-S>         <C-C>:update<CR>
-inoremap <silent> <C-S>         <C-O>:update<CR>
-
 let g:lightline = {
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
@@ -392,8 +371,3 @@ inoremap <C-F>t <Esc>:CtrlSFToggle<CR>
 let g:ctrlsf_auto_preview = 1
 let g:ctrlsf_default_root = 'project'
 
-set colorcolumn=+1,+2,+3
-highlight ColorColumn ctermbg=lightgrey guibg=lightgrey
-set colorcolumn=80
-
-let mapleader = ","
