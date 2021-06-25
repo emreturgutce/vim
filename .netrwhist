@@ -1,5 +1,6 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =2
+let g:netrw_dirhistcnt =3
+let g:netrw_dirhist_3='/home/emre/code/nodejs/express-csrf'
 let g:netrw_dirhist_2='/home/emre/code/askipo/mobileapp'
 let g:netrw_dirhist_1='/home/emre/code/askipo/mobileapp/src/app/pages/content/contest/contest-home'
 let g:netrw_dirhist_0='/home/emre/code/askipo/mobileapp/src/app/pages/content/contest'
@@ -9,4 +10,3 @@ let g:netrw_dirhist_7='/home/emre/code/askipo/mobileapp/src/app'
 let g:netrw_dirhist_6='/home/emre/code/askipo/mobileapp/src'
 let g:netrw_dirhist_5='/home/emre/code/askipo/mobileapp'
 let g:netrw_dirhist_4='/home/emre/code/askipo/mobileapp/src/app/pages/content/contest/contest-home'
-let g:netrw_dirhist_3='/home/emre/code/askipo/mobileapp/src/app/pages/content/contest'
