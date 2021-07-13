@@ -35,6 +35,8 @@ Plugin 'nvim-telescope/telescope-fzy-native.nvim'
 Plugin 'szw/vim-maximizer'
 Plugin 'mg979/vim-visual-multi', {'branch': 'master'}
 Plugin 'sainnhe/gruvbox-material'
+Plugin 'tmhedberg/SimpylFold'
+Plugin 'wfxr/minimap.vim'
 
 call vundle#end()
 
@@ -378,3 +380,14 @@ inoremap <C-F>t <Esc>:CtrlSFToggle<CR>
 let g:ctrlsf_auto_preview = 1
 let g:ctrlsf_default_root = 'project'
 
+if has('folding')
+  if has('windows')
+    let &fillchars='vert: '           " less cluttered vertical window separators
+  endif
+  set foldmethod=indent               " not as cool as syntax, but faster
+  set foldlevelstart=99               " start unfolded
+endif
+
+let g:minimap_width = 10
+let g:minimap_auto_start = 1
+let g:minimap_auto_start_win_enter = 1
